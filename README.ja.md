@@ -70,7 +70,7 @@ Tauri、React、Rustで構築された、CPUとメモリ使用率をリアルタ
 1. リポジトリをクローン：
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/tamaco489/system-monitor.git
    cd system-monitor
    ```
 

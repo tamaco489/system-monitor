@@ -31,12 +31,14 @@ A lightweight desktop application for real-time CPU and memory usage monitoring,
 ## Screenshots
 
 The application displays two main cards:
+
 - **CPU Usage Card**: Shows overall percentage, historical graph, and per-core breakdown
 - **Memory Usage Card**: Shows usage percentage, historical graph, and detailed memory statistics
 
 ## Tech Stack
 
 ### Frontend
+
 - **React 18** - UI framework
 - **TypeScript** - Type safety
 - **Vite** - Build tool and dev server
@@ -45,6 +47,7 @@ The application displays two main cards:
 - **Recharts** - Charting library for data visualization
 
 ### Backend
+
 - **Rust** - Systems programming language
 - **Tauri v2** - Desktop application framework
 - **sysinfo** - Cross-platform system information library
@@ -65,8 +68,9 @@ The application displays two main cards:
 ## Installation
 
 1. Clone the repository:
+
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/tamaco489/system-monitor.git
    cd system-monitor
    ```
 
@@ -84,6 +88,7 @@ npm run tauri dev
 ```
 
 This will:
+
 - Start the Vite dev server for the frontend
 - Compile the Rust backend
 - Launch the application window
@@ -97,6 +102,7 @@ npm run tauri build
 ```
 
 The built application will be located in:
+
 - **macOS**: `src-tauri/target/release/bundle/dmg/`
 - **Windows**: `src-tauri/target/release/bundle/msi/`
 - **Linux**: `src-tauri/target/release/bundle/deb/` or `appimage/`
@@ -135,24 +141,28 @@ system-monitor/
 ### Tauri Commands
 
 #### `get_cpu_usage`
+
 Returns current CPU usage information.
 
 **Response:**
+
 ```typescript
 interface CpuInfo {
-  overall: number;    // Overall CPU usage (0-100)
+  overall: number; // Overall CPU usage (0-100)
   per_core: number[]; // Per-core usage array (0-100 each)
 }
 ```
 
 #### `get_memory_usage`
+
 Returns current memory usage information.
 
 **Response:**
+
 ```typescript
 interface MemoryInfo {
-  used: number;       // Used memory in bytes
-  total: number;      // Total memory in bytes
+  used: number; // Used memory in bytes
+  total: number; // Total memory in bytes
   percentage: number; // Usage percentage (0-100)
 }
 ```
