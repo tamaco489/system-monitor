@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git switch:*)",
+      "Bash(git status:*)",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(cargo build:*)",
+      "Bash(cargo check:*)",
+      "Bash(cargo clippy:*)"
+    ],
+    "deny": []
+  },
+  "outputStyle": "explanatory",
+  "enabledMcpjsonServers": ["context7", "serena"],
+  "enableAllProjectMcpServers": true,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'System Monitor project loaded'"
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
