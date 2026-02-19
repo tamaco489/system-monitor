@@ -2,9 +2,9 @@
 
 A lightweight desktop application for real-time CPU and memory usage monitoring, built with Tauri, React, and Rust.
 
-[日本語版 README](./README.ja.md)
+[日本語](./README.ja.md)
 
-![System Monitor](./docs/sample.png)
+![System Monitor](./sample.png)
 
 ## Features
 
@@ -39,7 +39,7 @@ The application displays two main cards:
 
 ### Frontend
 
-- **React 18** - UI framework
+- **React 19** - UI framework
 - **TypeScript** - Type safety
 - **Vite** - Build tool and dev server
 - **Tailwind CSS** - Utility-first CSS framework
@@ -54,7 +54,21 @@ The application displays two main cards:
 
 ### Architecture Diagram
 
-![System Monitor Architecture](./docs/system-monitor-architecture.png)
+![System Monitor Architecture](./system-monitor-architecture.png)
+
+The application is structured in three layers:
+
+- **Frontend (React)** - UI rendered in a WebView, polling Tauri commands every second
+- **Rust Backend** - Tauri commands powered by the `sysinfo` crate for system data collection
+- **OS Layer** - Operating system APIs providing CPU, memory, and system resource data
+
+**Data Flow:**
+
+1. The OS exposes CPU and memory metrics
+2. The `sysinfo` crate reads system information
+3. `lib.rs` registers the data as Tauri commands
+4. React calls `invoke()` every 1 second
+5. The UI updates with the latest data
 
 ## Prerequisites
 
@@ -75,6 +89,7 @@ The application displays two main cards:
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -109,7 +124,7 @@ The built application will be located in:
 
 ## Project Structure
 
-```
+```text
 system-monitor/
 ├── src/                          # React frontend
 │   ├── App.tsx                   # Main application component

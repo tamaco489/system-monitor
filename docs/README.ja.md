@@ -2,9 +2,9 @@
 
 Tauri、React、Rustで構築された、CPUとメモリ使用率をリアルタイムで監視する軽量デスクトップアプリケーション。
 
-[English README](./README.md)
+[English](./README.md)
 
-![System Monitor](./docs/sample.png)
+![System Monitor](./sample.png)
 
 ## 機能
 
@@ -39,7 +39,7 @@ Tauri、React、Rustで構築された、CPUとメモリ使用率をリアルタ
 
 ### フロントエンド
 
-- **React 18** - UIフレームワーク
+- **React 19** - UIフレームワーク
 - **TypeScript** - 型安全性
 - **Vite** - ビルドツール・開発サーバー
 - **Tailwind CSS** - ユーティリティファーストCSSフレームワーク
@@ -54,7 +54,21 @@ Tauri、React、Rustで構築された、CPUとメモリ使用率をリアルタ
 
 ### アーキテクチャ図
 
-![System Monitor Architecture](./docs/system-monitor-architecture.png)
+![System Monitor Architecture](./system-monitor-architecture.png)
+
+アプリケーションは3層構造で構成されています：
+
+- **フロントエンド (React)** - WebView でレンダリングされる UI。毎秒 Tauri コマンドをポーリング
+- **Rust バックエンド** - `sysinfo` クレートでシステム情報を収集する Tauri コマンド群
+- **OS 層** - CPU・メモリ・システムリソースのデータを提供するOS API
+
+**データフロー：**
+
+1. OS が CPU・メモリのメトリクスを公開
+2. `sysinfo` クレートがシステム情報を読み取り
+3. `lib.rs` がそのデータを Tauri コマンドとして登録
+4. React が毎秒 `invoke()` を呼び出し
+5. UI が最新データで更新される
 
 ## 前提条件
 
@@ -75,6 +89,7 @@ Tauri、React、Rustで構築された、CPUとメモリ使用率をリアルタ
    ```
 
 2. 依存関係をインストール：
+
    ```bash
    npm install
    ```
@@ -109,7 +124,7 @@ npm run tauri build
 
 ## プロジェクト構成
 
-```
+```text
 system-monitor/
 ├── src/                          # Reactフロントエンド
 │   ├── App.tsx                   # メインアプリケーションコンポーネント
