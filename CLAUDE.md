@@ -24,7 +24,7 @@ npm run build
 
 ## アーキテクチャ
 
-```
+```text
 Frontend (React/TypeScript)          Backend (Rust/Tauri)
 ┌─────────────────────────┐         ┌─────────────────────────┐
 │ App.tsx                 │         │ lib.rs                  │
